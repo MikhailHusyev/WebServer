@@ -24,7 +24,7 @@ while True:
         #Fill in start
         header_OK = 'HTTP/1.1 200 OK \n'
         header_content_type = 'Content-Type: text/html \n'
-        header_length = 'Content-Length:' + (len(outputdata)) + '\n'
+        header_length = 'Content-Length: %d\n\n' % (len(outputdata))
         header = header_OK + header_content_type + header_length 
         connectionSocket.send(header)
         #Fill in end
