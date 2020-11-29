@@ -46,7 +46,6 @@ while True:
         header = header_OK + header_content_type + header_length 
         connectionSocket.send(header)
         #Fill in end
-
         #Send the content of the requested file to the client
         # Threading Start
         start_new_thread(multi_threading, (connectionSocket, outputdata))
