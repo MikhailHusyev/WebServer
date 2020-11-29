@@ -1,13 +1,22 @@
+# Project: WebServer
+# Group Day: Wednesday
+# Group Members: Mikhail Husyev, Victoria Kondratenko, Andriy Usyk
+# Bonus Points: We did multithreading portion for bonus
+
 #import socket module
 from socket import *
 import sys # In order to terminate the program
-import threading #For multi threading
+import threading #For threading 
 serverSocket = socket(AF_INET, SOCK_STREAM) #Prepare a sever socket
 #Fill in start
-serverPort = 7080
+serverPort = 7091
 serverSocket.bind(("", serverPort))
 serverSocket.listen(1)
 #Fill in end
+
+#Threading
+
+#
 while True:
     #Establish the connection print('Ready to serve...') connectionSocket, addr = try:
     #Fill in start
@@ -36,8 +45,12 @@ while True:
     except IOError:
         #Send response message for file not found
         #Fill in start
-
-        connectionSocket.send("HTTP/1.1 404 Not Found ")
+        header_not_found = 'HTTP/1.1 404 Not Found \n'
+        header_content_type = 'Content-Type: text/html \n'
+        header_content = '<html><body><h1>Sorry we were unable to find your request.</h1></body></html>'
+        header_length = 'Content-Length: %d\n\n' % (len(header_content))
+        header = header_not_found + header_content_type + header_length + header_content
+        connectionSocket.send(header)
         #Fill in end
         #Close client socket
         #Fill in start
